@@ -1,0 +1,31 @@
+    jQuery(document).ready(function($) {
+    jQuery('.single_variation_wrap').prop('id', 'UploadFile');
+
+});
+    
+    jQuery(document).ready(function(){
+         var element = document.getElementById("UploadFile");
+ 
+         element.classList.add("escondeElemento");
+    });
+
+
+          
+          jQuery(function() {
+        jQuery('#pa_design').change(function(){
+        
+        var inputVal = document.getElementById("pa_design").value;
+                		if (inputVal === "i-need-a-basic-design"){
+                document.getElementById("UploadFile").classList.add("escondeElemento");
+                console.log(inputVal);
+            }
+                    		if (inputVal === "i-need-a-premium-design"){
+                document.getElementById("UploadFile").classList.add("escondeElemento");
+                console.log(inputVal);
+            }
+        		if (inputVal === "im-going-to-upload-design"){
+                document.getElementById("UploadFile").classList.remove("escondeElemento");
+                console.log(inputVal);
+            }
+        });
+    });
