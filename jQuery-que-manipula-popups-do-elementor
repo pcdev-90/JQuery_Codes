@@ -1,0 +1,63 @@
+Uma coisa que recebemos muitas solicitações é uma maneira de rastrear Popups e uma maneira de inicializar elementos baseados em JavaScript quando um pop-up é mostrado.
+Para permitir que os adicionamos aos eventos mencionados acima, agora sempre que um Popup é mostrado, disparamos o elementor/popup/showevento e quando um popup é fechado,
+disparamos o elementor/popup/hideevento.
+
+
+O uso é muito simples, você apenas adiciona um ouvinte de evento ao evento desejado com seu retorno de chamada, por exemplo, rastreando eventos abertos em pop-up:
+
+jQuery( document ).on( 'elementor/popup/show', () => {
+	// aqui você pode colocar outras funções jQuery, exemplo desaparecer um botão do seu site
+} );
+
+
+O retorno de chamada do evento é chamado com 3 variáveis:
+
+Event - o objeto de evento dom.
+popupId - o id do pop-up que acionou o evento
+popupDocument - A instância do objeto de documento do elemento ou pop-up
+Isso permite que você tenha ainda mais controle, por exemplo, se eu quiser executar meu código de acompanhamento apenas quando um pop-up específico for fechado:
+
+jQuery( document ).on( 'elementor/popup/hide', ( event, id, instance ) => {
+	if ( id === 123 ) {
+		// aqui você pode colocar outras funções jQuery, exemplo aparecer um botão do seu site
+	}
+} );
+
+EXEMPLO DE USO:
+
+jQuery(document).ready(function(){
+  jQuery( document ).on( 'elementor/popup/show', () => {
+    jQuery("#menuHide, #menuHide2").css('display', 'none'); 
+  } );
+  jQuery( document ).on( 'elementor/popup/hide', ( event, id, instance ) => {
+    if ( id === 551 ) {
+      jQuery("#menuHide, #menuHide").css('display', 'block');
+    }
+  } );
+});	
+
+
+EXEMPLO DE USO:
+
+JOGAR NO FOOTER 
+
+<script>
+    
+jQuery(document).ready(function(){
+  jQuery( document ).on( 'elementor/popup/show', ( event, id, instance ) => {
+    if ( id === 551 ) {
+      jQuery("#menuHide, #menuHide2").css('display', 'none'); //Função que esconde 2 botões de ids "menuHide" e "menuHide" de um menu ao "ABRIR" um popup de id "551" do elementor PRO 
+    }  
+  } );
+  jQuery( document ).on( 'elementor/popup/hide', ( event, id, instance ) => {
+    if ( id === 551 ) {
+      jQuery("#menuHide, #menuHide2").css('display', 'block'); //Função que mostra 2 botões de ids "menuHide" e "menuHide" de um menu ao FECHAR um popup de id "551" do elementor PRO
+    }
+  } );
+});	
+
+		
+</script>
+
+Como sempre, seu feedback é bem-vindo.
+	
